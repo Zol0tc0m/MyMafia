@@ -262,18 +262,15 @@ void printResults(Game& game) {
 }
 
 int main() {
-    // Создание игры
     SetConsoleCP(1251);
     setlocale(LC_ALL, "Russian");
     Game game;
 
-    // Создание ролей
     game.mafiaRole.name = "Мафия";
     game.citizenRole.name = "Гражданин";
     game.detectiveRole.name = "Детектив";
     game.doctorRole.name = "Доктор";
 
-    // Добавление игроков
     string name;
     do {
         cout << "Введите имя игрока (или пустую строку для завершения). Игру невозможно начать, если колличество игроков меньше 6: ";
@@ -283,20 +280,14 @@ int main() {
         }
     } while (name != "" || game.players.size() < 6);
 
-    // Выбор ролей
-    cout << "Выберите роль для первого игрока: " << endl;
     chooseRole(game, game.players[0]);
 
-    // Распределение ролей
     distributeRoles(game);
 
-    // Вывод ролей
     printRoles(game);
 
-    // Игровая логика
     gameLogic(game);
 
-    // Вывод результатов
     printResults(game);
 
     return 0;
